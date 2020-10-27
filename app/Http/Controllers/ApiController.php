@@ -24,19 +24,55 @@ abstract class ApiController
         $this->sendResponse($result,'OK',200);
     }
 
-    public function detail(int $id=null){
+    public function detail(int $id) {
+
+        $entity = $this->model->find($id)->first();
+
+        if (!$entity) {
+            return $this->sendError('Not Found', 404);
+        }
+
+        return $this->sendResponse($entity, 'OK',200);
 
     }
 
-    public function update(int $id){
+    public function update(int $id, Request $request) {
+
+        $entity = $this->model->find($id)->first();
+
+        if (!$entity) {
+            return $this->sendError('Not Found', 404);
+        }
+
+        $data = $request->validated();
+
+        $this->model->fill($data)->push();
+
+        return $this->sendResponse(null, 'Updated',204);
+    }
+
+    public function delete(int $id) {
+
+        $entity = $this->model->find($id);
+
+        if (!$entity) {
+            return $this->sendError('Not Found', 404);
+        }
+
+        $entity->delete();
+
+        return $this->sendResponse(null, 'Deleted',204);
 
     }
 
-    public function create(){
+    public function create(Request $request) {
+
+        $data = $request->validated();
+
+        $this->model->fill($data)->push();
+
+        return $this->sendResponse(null, 'Created', 201);
 
     }
 
-    public function delete(int $id){
-
-    }
 }

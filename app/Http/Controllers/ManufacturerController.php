@@ -8,11 +8,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Medicine;
+use App\Manufacturer;
 
-class MedicineController extends ApiController
+class ManufacturerController extends ApiController
 {
- public function __construct(Medicine $model)
+ public function __construct(Manufacturer $model)
  {
      $this->model = $model;
  }
