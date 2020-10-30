@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebResourcesPaths">
+    <contentEntries>
+      <entry url="file://$PROJECT_DIR$">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/bootstrap" />
+            <path value="file://$PROJECT_DIR$/storage" />
+            <path value="file://$PROJECT_DIR$/storage/app" />
+            <path value="file://$PROJECT_DIR$/storage/framework" />
+            <path value="file://$PROJECT_DIR$/storage/app/public" />
+            <path value="file://$PROJECT_DIR$/storage/framework/cache" />
+            <path value="file://$PROJECT_DIR$/storage/framework/sessions" />
+            <path value="file://$PROJECT_DIR$/storage/framework/testing" />
+            <path value="file://$PROJECT_DIR$/storage/framework/views" />
+            <path value="file://$PROJECT_DIR$/storage/logs" />
+            <path value="file://$PROJECT_DIR$/bootstrap/cache" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+    </contentEntries>
+  </component>
+</project>

@@ -20,14 +20,20 @@ Manufacturer
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::post("login","AuthController@login");
-Route::post("register","AuthController@register");
+Route::post("login", "AuthController@login");
+Route::post("register", "AuthController@register");
 
-Route::group(["middleware"=>"auth.jwt"],function (){
-    Route::get("logout","AuthController@logout");
-    Route::get('/medicine', [MedicineController::class, 'index']);
-    Route::resource("manufacturer","MedicineController");
-    Route::resource("substance","MedicineController");
+Route::group(["middleware" => "auth.jwt"], function () {
+    Route::get("logout", "AuthController@logout");
+    Route::prefix('/medicine')->group(function () {
+        Route::get('/', [MedicineController::class, 'index']);
+        Route::post('/create', [MedicineController::class, 'store']);
+        Route::get('/show/{medicine}',[MedicineController::class, 'show']);
+        Route::put('/update/{medicine}',[MedicineController::class, 'update']);
+        Route::delete('/delete/{medicine}',[MedicineController::class, 'destroy']);
+    });
+    Route::resource("manufacturer", "MedicineController");
+    Route::resource("substance", "MedicineController");
 
 });
 //Route::get('/medicine',['medicine'=>'MedicineController@index']);
