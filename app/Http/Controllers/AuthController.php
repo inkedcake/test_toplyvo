@@ -15,10 +15,7 @@ class AuthController extends Controller
     public function login(Request $request){
         $credentials = $request->only("email","password");
         $token = null;
-        $token = JWTAuth::attempt($credentials);
-//        dd($credentials);
-
-        if (!$token){
+        if (!$token = JWTAuth::attempt($credentials)){
             return response()->json([
                 "status"=>false,
                 "message"=> 'Unauthorized'
@@ -63,7 +60,7 @@ class AuthController extends Controller
             return response()->json([
                 "status"=>true,
                 "message" =>"User logged out successfully"
-            ]);
+            ], 200);
         } catch (JWTException $exception){
             return response()->json([
                 "status"=>false,
