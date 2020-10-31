@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MedicineResource;
 use App\Medicine;
 use App\Substance;
 use Illuminate\Http\Request;
@@ -28,24 +29,18 @@ class MedicineController extends Controller
 
     public function index()
     {
-//        $model = new Medicine();
-
-        $medicines = $this->medicine->get([
-            'id',
-            'name',
-            'substance_id',
-            'manufacturer_id',
-            'price'
-        ])->toArray();
-        return $medicines;
+        $medicines = MedicineResource::collection(Medicine::all());;
+        return  response()->json($medicines,200);
     }
 
     public function show(Medicine $medicine){
-        if ($medicine){
+        $medicines = MedicineResource::make($medicine);;
+
+        if ($medicines){
            return response()->json([
                "status"=>true,
-               "medicine"=>$medicine
-           ]);
+               "medicine"=>$medicines
+           ],200);
        }else{
            return response()->json([
                "status"=>false,

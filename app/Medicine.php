@@ -21,10 +21,14 @@ class Medicine extends Model
         'manufacturer_id',
         'price',
     ];
-    public function manufacturer(){
-        return $this->hasOne(Manufacturer::class,'id','manufacurer_id');
+
+    public function manufacturer()
+    {
+        return $this->hasOne(Manufacturer::class, 'id', 'manufacturer_id');
     }
-    public function substance(){
-        return $this->hasOne(Substance::class,'id','substance_id');
+
+    public function substance()
+    {
+        return $this->hasOne(Substance::class, 'id', 'substance_id');
     }
 }
