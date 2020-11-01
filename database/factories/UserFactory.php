@@ -29,8 +29,8 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(\App\Medicine::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'manufacturer_id' => rand(1,20),
-        'substance_id' => rand(1,20),
+        'manufacturer_id' => rand(1,10),
+        'substance_id' => rand(1,10),
         'price' => $faker->randomFloat(2, 200, 888),
     ];
 });
