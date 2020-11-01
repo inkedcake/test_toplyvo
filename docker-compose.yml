@@ -1,28 +1,41 @@
 version: "3.3"
 
+networks:
+  laravel:
+
 services:
   nginx:
+    depends_on:
+      - fpm
+      - mysql
+    image: nginx:stable-alpine
+    container_name: nginx
     build:
       context: .
       dockerfile: docker/Nginx.Dockerfile
     ports:
       - 8080:80
-    links:
-      - fpm
     volumes:
       - ./:/var/www/test-toplyvo
+    networks:
+      - laravel
   fpm:
+
     build:
       context: .
       dockerfile: docker/Fpm.Dockerfile
     volumes:
       - ./:/var/www/test-toplyvo
-    links:
-      - mysql
+    working_dir: /var/www/test-toplyvo
+    networks:
+      - laravel
   mysql:
     image: mysql:5.7
+    restart: unless-stopped
     ports:
       - 33061:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=laravel
+    networks:
+      - laravel

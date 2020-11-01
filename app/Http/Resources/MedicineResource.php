@@ -20,7 +20,7 @@ class MedicineResource extends JsonResource
             'name' => $this->name,
             'substance' => $this->substance,
             'manufacturer' => $this->manufacturer,
-            'price' => $this->updated_at,
+            'price' => $this->price,
         ];
     }
 }
